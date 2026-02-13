@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GOLDENCLUB</title>
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family: Arial,sans-serif; }
+body { background-color:#000; color:#fff; scroll-behavior:smooth; perspective: 1000px; }
+
+header { background: linear-gradient(90deg, gold, #b8860b); color:black; text-align:center; padding:30px 10px; }
+header h1 { font-size:3rem; letter-spacing:4px; }
+
+.hero { min-height:80vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
+       background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+       url('https://images.unsplash.com/photo-1514361892635-6d08bcb89fca?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover; }
+.gc-logo { font-size:10rem; font-weight:bold; color:gold; text-shadow:0 0 20px gold,0 0 40px orange; margin-bottom:1rem; animation: glow 2s ease-in-out infinite alternate; }
+@keyframes glow { from { text-shadow:0 0 20px gold,0 0 40px orange; } to { text-shadow:0 0 40px gold,0 0 80px orange; } }
+
+.section { padding:60px 20px; text-align:center; }
+.section h2 { color:gold; font-size:2rem; margin-bottom:40px; position:relative; }
+.section h2::after { content:''; width:80px; height:3px; background:gold; display:block; margin:10px auto 0; border-radius:2px; }
+
+.grid { display:flex; justify-content:center; flex-wrap:wrap; gap:20px; }
+.card { background:#111; border:2px solid gold; padding:25px; border-radius:15px; width:220px; cursor:pointer; transition: transform 0.4s, box-shadow 0.4s; text-align:center; transform-style: preserve-3d; }
+.card:hover { transform: rotateY(10deg) rotateX(5deg) translateY(-10px); box-shadow:0 0 20px gold,0 0 40px orange; }
+
+.container {
+    display:none;
+    background:#111;
+    border:2px solid gold;
+    padding:25px;
+    margin:30px auto;
+    border-radius:12px;
+    text-align:left;
+    max-width:800px;
+    transform: translateY(-20px);
+    opacity:0;
+    transition: all 0.6s ease;
+}
+.container.show {
+    display:block;
+    transform: translateY(0);
+    opacity:1;
+}
+.container h3 { color:gold; margin-bottom:15px; font-size:1.5rem; }
+.container p { margin-bottom:8px; line-height:1.6; }
+
+footer { background:#000; padding:40px 20px; text-align:center; border-top:2px solid gold; color:gold; }
+
+@media(max-width:768px){ 
+    .gc-logo{font-size:6rem;} 
+    .card{width:80%;} 
+}
+@media(max-width:480px){ 
+    header h1{font-size:2rem;} 
+    .section h2{font-size:1.5rem;} 
+    .card:hover{transform:none;} 
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>GOLDENCLUB</h1>
+<p>La notte diventa leggenda</p>
+</header>
+
+<section class="hero">
+<div class="gc-logo">GC</div>
+<p>Luxury Night Experience</p>
+</section>
+
+<section class="section">
+<h2>I Nostri Prezzi</h2>
+<div class="grid">
+    <div class="card" id="tavoliVIP">Tavoli VIP<br>30$</div>
+    <div class="card" id="prevendite">Prevendite<br>15$</div>
+    <div class="card" id="parcheggio">Parcheggio<br>3$</div>
+    <div class="card" id="foodTruck">Food Truck</div>
+    <div class="card" id="servizi">Servizi</div>
+</div>
+
+<!-- CONTENITORI CON TUTTI I CONTENUTI COMPLETI -->
+<div id="vipList" class="container">
+<h3>🍾 Tavoli VIP</h3>
+<p>Prezzo Tavolo: 30$</p>
+<p><strong>VODKA:</strong> Grey Goose Dom Perignon, Belvedere, Beluga</p>
+<p><strong>GIN:</strong> Tanqueray, Gordon, Bombay</p>
+<p><strong>CHAMPAGNE:</strong> Krug, Crystal, Moet et Chandon, Dom Perignon Luminus, Armand de Brignac</p>
+<p><strong>TEQUILA:</strong> Clase Azul Reposado, Patron, Clase Azul Ultra</p>
+</div>
+
+<div id="prevList" class="container">
+<h3>💳 Prevendite</h3>
+<p>Sala 1: 15$</p>
+<p>Sala 2: 25$</p>
+<p>Sala Estiva: 10$</p>
+</div>
+
+<div id="parkInfo" class="container">
+<h3>🅿 Parcheggio Custodito</h3>
+<p>Orario: dalle 21:00 alle 4:00</p>
+<p>Prezzo: 3$</p>
+</div>
+
+<div id="foodMenu" class="container">
+<h3>🍔 Food Truck</h3>
+<p>Cheeseburger: 5$</p>
+<p>Patatine grandi: 3$</p>
+<p>Bibite: 3$</p>
+<p>Combo tutto insieme: 10$</p>
+</div>
+
+<div id="servizioNavetta" class="container">
+<h3>🚌 Servizi Navetta</h3>
+<p>Navetta: costo 3$</p>
+<p>Autista: Marcello Fabbris</p>
+</div>
+</section>
+
+<section class="section">
+<h2>I Proprietari</h2>
+<p><strong>NICCOLO FABBRIS</strong></p>
+<p><strong>GABRIELE LISI</strong></p>
+<p><strong>PIETRO BELLUCCI</strong></p>
+<p><strong>MATTEO SERA</strong></p>
+</section>
+
+<footer>
+<p>📍 Via del Galoppatoio 1</p>
+<p>📞 Direttore: 3456323356</p>
+<p>🚌 Navette: navette.goldenclub@gmail.com</p>
+<p>© 2026 GOLDENCLUB</p>
+</footer>
+
+<script>
+// Funzione per mostrare/nascondere il contenitore
+function toggleContainer(id) {
+    // Chiudi tutti gli altri container
+    const allContainers = document.querySelectorAll('.container');
+    allContainers.forEach(container => {
+        if (container.id !== id) {
+            container.classList.remove('show');
+        }
+    });
+    
+    // Toggle del container cliccato
+    const element = document.getElementById(id);
+    if (element) {
+        element.classList.toggle('show');
+    }
+}
+
+// Event listeners
+document.getElementById("tavoliVIP").addEventListener("click", function() {
+    toggleContainer("vipList");
+});
+
+document.getElementById("prevendite").addEventListener("click", function() {
+    toggleContainer("prevList");
+});
+
+document.getElementById("parcheggio").addEventListener("click", function() {
+    toggleContainer("parkInfo");
+});
+
+document.getElementById("foodTruck").addEventListener("click", function() {
+    toggleContainer("foodMenu");
+});
+
+document.getElementById("servizi").addEventListener("click", function() {
+    toggleContainer("servizioNavetta");
+});
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Golden Club</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto&display=swap" rel="stylesheet">
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(160deg, #0a0a0a, #1c1c1c);
+        color: #f5f5f5;
+    }
+
+    header {
+        background: linear-gradient(90deg, #bfa134, #ffd700);
+        text-align: center;
+        padding: 40px 0;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    }
+
+    header h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 4em;
+        color: #111;
+        letter-spacing: 4px;
+        margin: 0;
+    }
+
+    .menu-section {
+        max-width: 1000px;
+        margin: 50px auto;
+        padding: 0 20px;
+    }
+
+    h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2em;
+        color: #ffd700;
+        border-bottom: 2px solid #bfa134;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+    }
+
+    .bottiglia {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 20px;
+        margin-bottom: 15px;
+        border-radius: 10px;
+        background: rgba(255, 215, 0, 0.05);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .bottiglia:hover {
+        background: rgba(255, 215, 0, 0.2);
+        transform: scale(1.02);
+    }
+
+    .bottiglia span {
+        font-weight: bold;
+    }
+
+    .available {
+        color: #0f0;
+    }
+
+    .unavailable {
+        color: #f00;
+    }
+
+    /* Tavoli */
+    .table-map {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 600px;
+        margin: 30px auto;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .table {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        color: #fff;
+    }
+
+    .table.available {
+        background: linear-gradient(145deg, #0f0, #00aa00);
+    }
+
+    .table.reserved {
+        background: linear-gradient(145deg, #f00, #aa0000);
+        cursor: not-allowed;
+    }
+
+    .table:hover.available {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.7);
+    }
+
+    /* Form prenotazione */
+    .reservation-form {
+        max-width: 450px;
+        margin: 40px auto;
+        background: rgba(255, 215, 0, 0.05);
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    }
+
+    .reservation-form input, 
+    .reservation-form select, 
+    .reservation-form button {
+        width: 100%;
+        margin: 12px 0;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1em;
+    }
+
+    .reservation-form input, .reservation-form select {
+        background: rgba(255,255,255,0.05);
+        color: #fff;
+    }
+
+    .reservation-form button {
+        background: #bfa134;
+        color: #111;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .reservation-form button:hover {
+        background: #ffd700;
+        transform: scale(1.05);
+    }
+
+    footer {
+        text-align: center;
+        padding: 25px 0;
+        background: #222;
+        color: #aaa;
+        font-size: 0.9em;
+        letter-spacing: 1px;
+    }
+
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Golden Club</h1>
+</header>
+
+<section class="menu-section">
+    <h2>Vodka</h2>
+    <div class="bottiglia available" data-price="15">ABSOLUT - €15</div>
+    <div class="bottiglia available" data-price="25">GREY GOOSE - €25</div>
+    <div class="bottiglia available" data-price="30">BELVEDERE - €30</div>
+    <div class="bottiglia available" data-price="35">BELUGA - €35</div>
+
+    <h2>Gin</h2>
+    <div class="bottiglia available" data-price="18">BOMBAY - €18</div>
+    <div class="bottiglia available" data-price="22">GIN MARE - €22</div>
+    <div class="bottiglia available" data-price="20">TANQUERAY - €20</div>
+    <div class="bottiglia available" data-price="25">ENGINE - €25</div>
+
+    <h2>Champagne</h2>
+    <div class="bottiglia available" data-price="200">DOM PERIGNON - €200</div>
+    <div class="bottiglia available" data-price="350">DOM PERIGNON LUMINUS - €350</div>
+    <div class="bottiglia available" data-price="400">CRYSTAL - €400</div>
+    <div class="bottiglia available" data-price="450">ARMAND DE BRIGNAC - €450</div>
+
+    <h2>Tequila</h2>
+    <div class="bottiglia available" data-price="50">AZUL - €50</div>
+    <div class="bottiglia available" data-price="60">DON JULIO - €60</div>
+    <div class="bottiglia available" data-price="55">AZUL REPOSADO - €55</div>
+    <div class="bottiglia available" data-price="65">PATRON - €65</div>
+</section>
+
+<section class="menu-section">
+    <h2>Mappa dei Tavoli</h2>
+    <div class="table-map">
+        <div class="table available" data-table="1">1</div>
+        <div class="table available" data-table="2">2</div>
+        <div class="table available" data-table="3">3</div>
+        <div class="table reserved" data-table="4">4</div>
+        <div class="table available" data-table="5">5</div>
+        <div class="table available" data-table="6">6</div>
+        <div class="table reserved" data-table="7">7</div>
+        <div class="table available" data-table="8">8</div>
+    </div>
+
+    <h2>Prenotazione Tavolo</h2>
+    <form class="reservation-form" id="reservationForm">
+        <input type="text" id="name" placeholder="Nome" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <select id="tableSelect" required>
+            <option value="">Seleziona Tavolo</option>
+            <option value="1">Tavolo 1</option>
+            <option value="2">Tavolo 2</option>
+            <option value="3">Tavolo 3</option>
+            <option value="5">Tavolo 5</option>
+            <option value="6">Tavolo 6</option>
+            <option value="8">Tavolo 8</option>
+        </select>
+        <button type="submit">Prenota</button>
+    </form>
+</section>
+
+<footer>
+    &copy; 2026 Golden Club. Tutti i diritti riservati.
+</footer>
+
+<script>
+    // Gestione bottiglie
+    const bottles = document.querySelectorAll('.bottiglia');
+    bottles.forEach(bottle => {
+        bottle.addEventListener('click', () => {
+            if (bottle.classList.contains('available')) {
+                bottle.classList.remove('available');
+                bottle.classList.add('unavailable');
+                bottle.textContent += " - Esaurito";
+                alert(`Hai ordinato ${bottle.textContent.split(" - ")[0]}!`);
+            } else {
+                alert('Bottiglia non disponibile.');
+            }
+        });
+    });
+
+    // Gestione prenotazione tavoli
+    const form = document.getElementById('reservationForm');
+    const tables = document.querySelectorAll('.table');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const tableNumber = document.getElementById('tableSelect').value;
+        if(!tableNumber) return;
+
+        const tableDiv = document.querySelector(`.table[data-table="${tableNumber}"]`);
+        if(tableDiv.classList.contains('reserved')) {
+            alert('Il tavolo è già prenotato!');
+        } else {
+            tableDiv.classList.remove('available');
+            tableDiv.classList.add('reserved');
+            alert(`Tavolo ${tableNumber} prenotato con successo!`);
+            form.reset();
+        }
+    });
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Club - Servizio Navetta Discoteca</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #111, #1c1c1c);
+            color: white;
+        }
+
+        header {
+            background: gold;
+            color: black;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 40px;
+        }
+
+        nav {
+            background: #000;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: gold;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .servizi {
+            background-color: #222;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .highlight {
+            color: gold;
+            font-weight: bold;
+        }
+
+        footer {
+            background: black;
+            text-align: center;
+            padding: 20px;
+            color: gray;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: gold;
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #e6c200;
+        }
+
+        form {
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .success {
+            text-align: center;
+            margin-top: 20px;
+            color: gold;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Golden Club</h1>
+    <p>Servizio Navetta Discoteca in Totale Sicurezza</p>
+</header>
+
+<nav>
+    <a href="#chi-siamo">Chi Siamo</a>
+    <a href="#servizi">Servizi</a>
+    <a href="#sicurezza">Sicurezza</a>
+    <a href="#prenotazione">Prenota</a>
+</nav>
+
+<section id="chi-siamo">
+    <h2>Chi Siamo</h2>
+    <p>
+        Golden Club offre un servizio navetta dedicato a tutti i ragazzi e ragazze che vogliono divertirsi
+        senza pensieri. Organizziamo tratte da <span class="highlight">Piombino a Castiglioncello</span>
+        fino alla discoteca, garantendo un viaggio comodo, organizzato e sicuro.
+    </p>
+</section>
+
+<section id="servizi" class="servizi">
+    <h2>I Nostri Servizi</h2>
+    <ul>
+        <li>✔️ Partenza da Piombino</li>
+        <li>✔️ Fermate intermedie fino a Castiglioncello</li>
+        <li>✔️ Arrivo diretto alla discoteca</li>
+        <li>✔️ Rientro a casa dopo la serata</li>
+        <li>✔️ Viaggio in totale sicurezza</li>
+    </ul>
+</section>
+
+<section id="sicurezza">
+    <h2>Sicurezza Prima di Tutto</h2>
+    <p>
+        Il servizio è guidato dall’autista <span class="highlight">Marcello Fabbris</span>,
+        che guida pullman da oltre <span class="highlight">10 anni</span>.
+        In questo modo potete godervi la serata senza rischiare incidenti.
+    </p>
+</section>
+
+<section id="prenotazione">
+    <h2>Prenota il tuo posto</h2>
+
+    <form onsubmit="return confermaPrenotazione(event)">
+        <input type="text" placeholder="Nome e Cognome" required>
+        <input type="tel" placeholder="Numero di telefono" required>
+        <input type="date" required>
+        <input type="time" required>
+        <input type="number" placeholder="Numero di persone" min="1" required>
+        <button type="submit" class="btn">Invia Prenotazione</button>
+    </form>
+
+    <div id="messaggio" class="success"></div>
+</section>
+
+<footer>
+    <p>© 2026 Golden Club - Servizio Navetta Discoteca</p>
+</footer>
+
+<script>
+    function confermaPrenotazione(event) {
+        event.preventDefault();
+        document.getElementById("messaggio").innerText =
+            "✅ Prenotazione inviata con successo! Ti contatteremo presto per la conferma.";
+        return false;
+    }
+</script>
+
+</body>
+</html>
